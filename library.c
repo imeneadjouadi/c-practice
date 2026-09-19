@@ -53,6 +53,31 @@ if (found == false) {
     printf("Book not found.\n");
 }
 }
+
+void addbook (book B[],int *N){
+  if (*N < 50 ){
+  printf(" Adding new book ,enter title :");
+  fgets(B[*N].title,50,stdin);
+  B[*N].title[strcspn(B[*N].title, "\n")] = 0;
+
+  printf("Enter author:");
+  fgets(B[*N].author,50,stdin);
+  B[*N].author[strcspn(B[*N].author, "\n")] = 0;
+
+  printf("Enter price: ");
+  scanf("%f",&B[*N].price);
+
+  printf("Enter number of copies:");
+  scanf("%d",&B[*N].nbrcopies);
+
+  printf("Enter the publishing year : ");
+  scanf("%d",&B[*N].publishingyear);
+  getchar();
+
+  *N =*N+1;
+}
+else printf("No space for a new book ");
+}
 int main() {
   book B[50]; int N ;
     
@@ -71,6 +96,12 @@ int main() {
 
   // searchimg for a book by title 
   search_by_title(B,N);
+  
+  //adding a book 
+  addbook(B,&N);
+  
+  // seeing array after adding book
+  displaybooks(B,N);
 
 
    return 0;
