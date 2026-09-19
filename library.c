@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<string.h>
+#include<stdbool.h>
 typedef struct {char title[50];
   char author[50] ; float price;  int nbrcopies ;  int publishingyear;
 }book;
@@ -31,7 +32,27 @@ void displaybooks(book B[],int N){
    }
 
 }
+void search_by_title (book B[],int N){
 
+   int i=0;char searchTitle[50] ;bool found = false;
+  printf("\nEnter title to search for: ");
+  fgets(searchTitle, 50, stdin);
+  searchTitle[strcspn(searchTitle, "\n")] = 0;
+
+
+  while (i < N && found == false) {
+     if (strcmp(B[i].title, searchTitle) == 0) {
+        found = true;
+        printf("Found! Price: %.2f DA number of copies available %d\n ", B[i].price,B[i].nbrcopies);
+     } else {
+        i++; // Only increment if not found
+     }
+}
+
+if (found == false) {
+    printf("Book not found.\n");
+}
+}
 int main() {
   book B[50]; int N ;
     
@@ -48,7 +69,9 @@ int main() {
    // displaying books 
   displaybooks(B,N);
 
+  // searchimg for a book by title 
+  search_by_title(B,N);
 
 
-   return 0; 
+   return 0;
 }
