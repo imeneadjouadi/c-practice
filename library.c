@@ -78,6 +78,30 @@ void addbook (book B[],int *N){
 }
 else printf("No space for a new book ");
 }
+void removebook (book B[],int *N){
+   int i = 0,j; char title[50];
+   printf("enter title to remove :");
+   fgets(title,50,stdin);
+   title[strcspn(title, "\n")] = 0;
+   while (i < *N)
+   {
+    if(strcmp(B[i].title,title)== 0 ){
+      // shifting left to delete book
+      for(j=i;j<*N - 1;j++){
+        strcpy(B[j].title,B[j+1].title);
+        strcpy(B[j].author,B[j+1].author);
+        B[j].price = B[j+1].price;
+        B[j].publishingyear = B[j+1].publishingyear;
+        B[j].nbrcopies = B[j+1].nbrcopies;
+      }(*N)--; 
+      printf("Book removed successfully.\n");
+      return; // leaving the function when we delete book
+    }
+    i++;
+   }printf("Book not found \n");
+   } 
+   
+
 int getuserchoice(){
   int choice;
   //printing the menu
@@ -131,6 +155,7 @@ int main() {
  }while (userchoice != 4);
  
  
+
 
    return 0;
 }
