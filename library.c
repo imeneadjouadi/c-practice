@@ -78,31 +78,59 @@ void addbook (book B[],int *N){
 }
 else printf("No space for a new book ");
 }
+int getuserchoice(){
+  int choice;
+  //printing the menu
+  printf("Library Menu \n");
+  printf("1-Display books\n");
+  printf("2-Search book by title\n");
+  printf("3-Add book \n");
+  printf("4-Exit\n");
+  printf("choice :");
+
+  // reading user  choice
+  scanf("%d",&choice);
+  getchar();
+  return choice;
+}
 int main() {
   book B[50]; int N ;
     
   // reading number of books
    
    do{
-     printf("enter number of books");
+     printf("enter number of books :");
      scanf("%d",&N); getchar();// Clears the \n before the first fgets
    }while (N<1 || N>50);
    
    // filiing the array 
    fillbooks(B,N);
-  
-   // displaying books 
-  displaybooks(B,N);
 
-  // searchimg for a book by title 
-  search_by_title(B,N);
-  
-  //adding a book 
-  addbook(B,&N);
-  
-  // seeing array after adding book
-  displaybooks(B,N);
-
+ 
+   int userchoice;
+ do {
+    userchoice = getuserchoice();
+    switch (userchoice)
+    {
+    case 1:
+      displaybooks(B,N);
+      break;
+    case 2 :
+      search_by_title(B,N);
+      break;
+    case 3 :
+      addbook(B,&N);  
+      break;
+    case 4 : 
+      printf("goodbye!\n");
+      break; 
+    default:
+      printf("invalid choice,try again\n");
+      break;
+    }
+ }while (userchoice != 4);
+ 
+ 
 
    return 0;
 }
