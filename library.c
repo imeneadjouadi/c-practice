@@ -109,7 +109,8 @@ int getuserchoice(){
   printf("1-Display books\n");
   printf("2-Search book by title\n");
   printf("3-Add book \n");
-  printf("4-Exit\n");
+  printf("4-Remove book\n");
+  printf("5-Exit\n");
   printf("choice :");
 
   // reading user  choice
@@ -145,14 +146,17 @@ int main() {
     case 3 :
       addbook(B,&N);  
       break;
-    case 4 : 
+    case 4 :
+      removebook(B,&N); 
+      break; 
+    case 5 : 
       printf("goodbye!\n");
       break; 
     default:
       printf("invalid choice,try again\n");
       break;
     }
- }while (userchoice != 4);
+ }while (userchoice != 5);
  
  
 
